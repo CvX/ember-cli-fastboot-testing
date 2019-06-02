@@ -43,7 +43,7 @@ module.exports = {
   _fastbootRenderingMiddleware(app) {
 
     app.post('/__mock-request', bodyParser.json(), (req, res) => {
-      let mock = nock(req.headers.origin)
+      let mock = nock(req.body.hostname)
         .persist()
         .intercept(req.body.path, req.body.method)
         .reply(req.body.statusCode, req.body.response);
